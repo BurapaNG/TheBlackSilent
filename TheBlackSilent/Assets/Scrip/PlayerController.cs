@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         if (canHide && Input.GetKeyDown(KeyCode.F))
         {
+            hiding = !hiding;
             Physics2D.IgnoreLayerCollision(8, 9, true);
             rend.sortingOrder = 0;
             hiding = true;
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name.Equals("locked"))
         {
             canHide = false;
+            rend.sortingOrder = 2;
         }
     }
 }
