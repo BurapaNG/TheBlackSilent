@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour 
 {
     [SerializeField] private float speed;
+    [SerializeField] private GameObject hidePromptUI;
     private Rigidbody2D body;
     private SpriteRenderer rend;
     private bool canHide = false;
@@ -14,6 +16,11 @@ public class PlayerController : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
+
+        if (hidePromptUI != null)
+        {
+            hidePromptUI.SetActive(false);
+        }
     }
 
     private void Update()
@@ -27,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
                 Physics2D.IgnoreLayerCollision(8, 9, true);
                 rend.sortingOrder = 0;
+
+                if (hidePromptUI != null) hidePromptUI.SetActive(false);
             }
 
 
@@ -34,6 +43,8 @@ public class PlayerController : MonoBehaviour
             {
                 Physics2D.IgnoreLayerCollision(8, 9, false);
                 rend.sortingOrder = 2;
+
+                if (hidePromptUI != null) hidePromptUI.SetActive(true);
 
             }
         }
@@ -56,12 +67,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("locked"))
         {
             canHide = true;
+
+            if (hidePromptUI != null) hidePromptUI.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("locked"))
         {
+
+            if (hidePromptUI != null) hidePromptUI.SetActive(false);
+
             canHide = false;
             rend.sortingOrder = 2;
         }
