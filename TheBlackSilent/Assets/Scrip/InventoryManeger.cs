@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class InventoryManeger : MonoBehaviour
 {
-    public GameObject InventoryMenu;
-    private bool menuActived;
+    [SerializeField]
+    private GameObject inventoryMenu;
+    private bool isMenuOpen = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,23 +15,34 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Inventory") && menuActived)
+        if (Input.GetButtonDown("Inventory"))
         {
-            Time.timeScale = 1;
-            InventoryMenu.SetActive(false);
-            menuActived = false;
-        }
-        else if (Input.GetButtonDown("Inventory") && !menuActived)
-        {
-            Time.timeScale = 0;
-            InventoryMenu.SetActive(true);
-            menuActived = true;
+            ToggleInventory();
         }
     }
-    
-
-    public void AddItem(string itemname, int amount,sprite itemsprite)
+    public void ToggleInventory()
     {
-        Debug.Log("item name: " + itemname + " quantity = " + quantity + " item sprite = " + itemsprite);
+
+        isMenuOpen = !isMenuOpen;
+
+
+        if (isMenuOpen)
+        {
+
+            Time.timeScale = 0f;
+            if (inventoryMenu != null) inventoryMenu.SetActive(true);
+        }
+        else
+        {
+
+            Time.timeScale = 1f;
+            if (inventoryMenu != null) inventoryMenu.SetActive(false);
+        }
+    }
+
+
+    public void AddItem(string itemName, int amount, Sprite itemSprite)
+    {
+        Debug.Log("Item Name: " + itemName + ", Quantity = " + amount + ", Item Sprite = " + itemSprite);
     }
 }

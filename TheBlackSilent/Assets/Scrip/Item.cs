@@ -11,12 +11,12 @@ public class Item : MonoBehaviour
     [SerializeField]
     private Sprite sprite;
 
-    private InventoryManager inventoryManager;
+    private InventoryManeger inventoryManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManeger>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
