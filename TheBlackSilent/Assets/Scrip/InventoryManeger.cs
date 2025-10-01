@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class InventoryManeger : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject inventoryMenu;
-    private bool isMenuOpen = false;
+    public GameObject InventoryMenu;
+    private bool menuActived;
+    public Itemslot[] itemSlots;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,29 +20,30 @@ public class InventoryManeger : MonoBehaviour
             ToggleInventory();
         }
     }
-    public void ToggleInventory()
+
+
+    public void AddItem(string itemName, int quantity, sprite itemSprite, string itemDescription) // Additem //
     {
-
-        isMenuOpen = !isMenuOpen;
-
-
-        if (isMenuOpen)
+        for (int i = 0; i < itemSlots.Length; i++)
         {
-
-            Time.timeScale = 0f;
-            if (inventoryMenu != null) inventoryMenu.SetActive(true);
+            if (!itemSlots[i].isFull == false && itemSlots[i].name == name || itemSlots[i].quantity == 0)
+            {
+                int leftOverItems = itemSlots[i].AddItem(itemName, quantity, itemSprite, itemDescription);
+                if (leftOverItems > 0)
+                    leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription);
+                return leftOverItems;
+            }
         }
-        else
-        {
-
-            Time.timeScale = 1f;
-            if (inventoryMenu != null) inventoryMenu.SetActive(false);
-        }
+        return quantity;
     }
+    
 
-
-    public void AddItem(string itemName, int amount, Sprite itemSprite)
+    public void DeselectAllSlots()
     {
-        Debug.Log("Item Name: " + itemName + ", Quantity = " + amount + ", Item Sprite = " + itemSprite);
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            itemSlot[i].selectedShader.SetActive(false);
+            itemSlot[i].thisItemSelected = false;
+        }
     }
 }
