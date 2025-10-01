@@ -56,10 +56,22 @@ public class PlayerController : MonoBehaviour
         if (!hiding)
         {
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            FlipSprite(horizontalInput);
         }
         else
         {
             body.velocity = Vector2.zero;
+        }
+    }
+    private void FlipSprite(float horizontalInput)
+    {
+        if (horizontalInput > 0.01f)
+        {
+            rend.flipX = false;
+        }
+        else if (horizontalInput < -0.01f)
+        {
+            rend.flipX = true;
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
