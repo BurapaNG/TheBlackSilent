@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,5 +26,11 @@ public class Inventory : MonoBehaviour
             InventoryMenu.SetActive(true);
             menuActived = true;
         }
+    }
+    
+
+    public void AddItem(string itemname, int amount,sprite itemsprite)
+    {
+        Debug.Log("item name: " + itemname + " quantity = " + quantity + " item sprite = " + itemsprite);
     }
 }
