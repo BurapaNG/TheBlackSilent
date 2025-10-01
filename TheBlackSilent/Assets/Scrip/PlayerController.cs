@@ -22,15 +22,20 @@ public class PlayerController : MonoBehaviour
         if (canHide && Input.GetKeyDown(KeyCode.F))
         {
             hiding = !hiding;
-            Physics2D.IgnoreLayerCollision(8, 9, true);
-            rend.sortingOrder = 0;
-            hiding = true;
-        }
-        else
-        {
-            Physics2D.IgnoreLayerCollision(8, 9, false);
-            rend.sortingOrder = 2;
-            hiding = false;
+            if (hiding)
+            {
+
+                Physics2D.IgnoreLayerCollision(8, 9, true);
+                rend.sortingOrder = 0;
+            }
+
+
+            else
+            {
+                Physics2D.IgnoreLayerCollision(8, 9, false);
+                rend.sortingOrder = 2;
+
+            }
         }
 
     }
@@ -48,14 +53,14 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name.Equals("locked"))
+        if (other.gameObject.CompareTag("locked"))
         {
             canHide = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.name.Equals("locked"))
+        if (other.gameObject.CompareTag("locked"))
         {
             canHide = false;
             rend.sortingOrder = 2;
