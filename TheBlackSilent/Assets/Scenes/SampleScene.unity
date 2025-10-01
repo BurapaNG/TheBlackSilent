@@ -681,7 +681,10 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &762102196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,7 +1167,11 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Offset: {x: -0.018930197, y: 0}
+=======
+  m_Offset: {x: -0.009644389, y: 0}
+>>>>>>> Stashed changes
 =======
   m_Offset: {x: -0.009644389, y: 0}
 >>>>>>> Stashed changes
@@ -1178,11 +1185,16 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Size: {x: 1.6492555, y: 4.12}
   m_EdgeRadius: 0
 =======
   m_Size: {x: 1.915371, y: 4.12}
   m_EdgeRadius: 0
+=======
+  m_Size: {x: 1.915371, y: 4.12}
+  m_EdgeRadius: 0
+>>>>>>> Stashed changes
 --- !u!4 &1610068608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3474365260886147945, guid: e02d186c46b64fc468259595fd2bdd6c, type: 3}
@@ -1518,7 +1530,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 3087885808265838433, guid: a3e57154b79d8f647bfb08973fb863ce, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -1591,4 +1606,7 @@ SceneRoots:
   - {fileID: 1738381248}
   - {fileID: 989387452}
   - {fileID: 895686625}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

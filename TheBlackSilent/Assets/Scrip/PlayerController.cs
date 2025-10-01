@@ -71,7 +71,10 @@ public class PlayerController : MonoBehaviour
         {
             canHide = true;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
             Transform hidePoint = other.transform.Find("HidePoint");
             if (hidePoint != null) { SetHidePoint(hidePoint); }
 
@@ -86,6 +89,8 @@ public class PlayerController : MonoBehaviour
         {
 <<<<<<< Updated upstream
 =======
+
+            ClearHidePoint();
 
             ClearHidePoint();
 

@@ -23,7 +23,11 @@ public class Item : MonoBehaviour
     void Start()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManeger>();
+>>>>>>> Stashed changes
 =======
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManeger>();
 >>>>>>> Stashed changes
@@ -40,12 +44,15 @@ public class Item : MonoBehaviour
                 quantity = leftOverItems;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         else if (Input.GetButtonDown("Inventory") && !menuActived)
         {
             Time.timeScale = 0;
             InventoryMenu.SetActive(true);
             menuActived = true;
         }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     }
