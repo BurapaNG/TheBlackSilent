@@ -1,30 +1,52 @@
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Item : MonoBehaviour
 {
-    public GameObject InventoryMenu;
-    private bool menuActived;
+    [SerializeField]
+    private string itemName;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]
+    private int quantity;
+
+    [SerializeField]
+    private Sprite sprite;
+
+    [TextArea]
+    [SerializeField]
+    private string itemDescription;
+
+
+
+    private InventoryManager inventoryManager;
+
+    // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream
         
+=======
+        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManeger>();
+>>>>>>> Stashed changes
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Input.GetButtonDown("Inventory") && menuActived)
+        if (collision.gameObject.tag == "Player")
         {
-            Time.timeScale = 1;
-            InventoryMenu.SetActive(false);
-            menuActived = false;
+            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+            if (leftOverItems == 0)
+                Destroy(gameObject);
+            else
+                quantity = leftOverItems;
         }
+<<<<<<< Updated upstream
         else if (Input.GetButtonDown("Inventory") && !menuActived)
         {
             Time.timeScale = 0;
             InventoryMenu.SetActive(true);
             menuActived = true;
         }
+=======
+>>>>>>> Stashed changes
     }
 }
