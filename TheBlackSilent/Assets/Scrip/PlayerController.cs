@@ -5,6 +5,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour 
 {
+    private Transform currentHidePoint = null;
     [SerializeField] private float speed;
     [SerializeField] private GameObject hidePromptUI;
     private Rigidbody2D body;
@@ -31,6 +32,10 @@ public class PlayerController : MonoBehaviour
             hiding = !hiding;
             if (hiding)
             {
+                if (currentHidePoint != null)
+                {
+                    transform.position = currentHidePoint.position;
+                }
 
                 Physics2D.IgnoreLayerCollision(8, 9, true);
                 rend.sortingOrder = 0;
@@ -49,6 +54,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+    }
+    public void SetHidePoint(Transform point)
+    {
+        currentHidePoint = point;
+    }
+
+    public void ClearHidePoint()
+    {
+        currentHidePoint = null;
     }
     private void FixedUpdate()
     {
@@ -79,6 +93,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("locked"))
         {
             canHide = true;
+            Transform hidePoint = other.transform.Find("HidePoint");
+            if (hidePoint != null) { SetHidePoint(hidePoint); }
+
 
             if (hidePromptUI != null) hidePromptUI.SetActive(true);
         }
@@ -87,6 +104,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("locked"))
         {
+
+            ClearHidePoint();
 
             if (hidePromptUI != null) hidePromptUI.SetActive(false);
 
