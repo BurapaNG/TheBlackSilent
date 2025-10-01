@@ -5,6 +5,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour 
 {
+    private Vector3 positionBeforeHiding;
     private Transform currentHidePoint = null;
     [SerializeField] private float speed;
     [SerializeField] private GameObject hidePromptUI;
@@ -32,9 +33,12 @@ public class PlayerController : MonoBehaviour
             hiding = !hiding;
             if (hiding)
             {
+                positionBeforeHiding = transform.position;
                 if (currentHidePoint != null)
                 {
                     transform.position = currentHidePoint.position;
+
+                    body.isKinematic = true;
                 }
 
                 Physics2D.IgnoreLayerCollision(8, 9, true);
@@ -46,6 +50,11 @@ public class PlayerController : MonoBehaviour
 
             else
             {
+
+                transform.position = positionBeforeHiding;
+
+                body.isKinematic = false;
+
                 Physics2D.IgnoreLayerCollision(8, 9, false);
                 rend.sortingOrder = 2;
 
@@ -88,6 +97,7 @@ public class PlayerController : MonoBehaviour
             rend.flipX = true;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("locked"))
@@ -106,11 +116,20 @@ public class PlayerController : MonoBehaviour
         {
 
             ClearHidePoint();
-
-            if (hidePromptUI != null) hidePromptUI.SetActive(false);
-
             canHide = false;
-            rend.sortingOrder = 2;
+            if (hidePromptUI != null) hidePromptUI.SetActive(false);
+            
+                if (hiding)
+                {
+                    hiding = false;
+
+
+                    transform.position = positionBeforeHiding;
+                    body.isKinematic = false;
+                    Physics2D.IgnoreLayerCollision(8, 9, false);
+                    rend.sortingOrder = 2;
+                }
+            
         }
     }
 }
