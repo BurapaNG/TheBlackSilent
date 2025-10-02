@@ -17,12 +17,12 @@ public class Item : MonoBehaviour
 
 
 
-    private InventoryManeger inventoryManager;
+    private InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManeger>();
+        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
