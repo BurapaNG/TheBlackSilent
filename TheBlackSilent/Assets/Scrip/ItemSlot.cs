@@ -10,6 +10,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public int quantity;
     public Sprite itemSprite;
     public bool isFull;
+    public string itemDescription;
+    public Sprite emptySprite;
 
     // Item Slot //
     [SerializeField]
@@ -18,14 +20,27 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Image itemImage;
 
+    // Item Description Slot//
+    public Image itemDescriptionImage;
+    public TMP_Text ItemDescriptionNameText;
+    public TMP_Text ItemDescriptionText;
+
     public GameObject selecteShader;
     public bool thisItemSelected;
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite)
+    private InventoryManager InventoryManager;
+
+    private void Start()
+    {
+        InventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+    }
+
+    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
         this.itemName = itemName;
         this.quantity = quantity;
         this.itemSprite = itemSprite;
+        this.itemDescription = itemDescription;
         isFull = true;
 
         quantityText.text = quantity.ToString();
@@ -49,8 +64,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     private void OnLeftClick()
     {
+        InventoryManager.DeselectAllSlots();
         selecteShader.SetActive(true);
         thisItemSelected = true;
+        ItemDescriptionNameText.text = itemName;
+        ItemDescriptionText.text = itemDescription;
+        itemDescriptionImage.sprite = itemSprite;
+        if (itemDescriptionImage.sprite == null)
+             itemDescriptionImage.sprite = emptySprite;
     }
 
     
