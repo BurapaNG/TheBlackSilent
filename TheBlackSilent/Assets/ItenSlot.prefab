@@ -97,6 +97,8 @@ MonoBehaviour:
   isFull: 0
   quantityText: {fileID: 5263001573282510167}
   itemImage: {fileID: 3492139103651009788}
+  selecteShader: {fileID: 8387088965830964004}
+  thisItemSelected: 0
 --- !u!1 &5792584500995359456
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5792584500995359456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
