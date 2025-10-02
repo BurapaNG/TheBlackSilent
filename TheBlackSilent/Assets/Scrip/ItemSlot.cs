@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemSolot : MonoBehaviour, IPointerClickHandler
+public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
     // ITEM DATA //
     public string itemName;
@@ -11,7 +11,7 @@ public class ItemSolot : MonoBehaviour, IPointerClickHandler
     public Sprite itemSprite;
     public bool isfull;
     public string itemDescription;
-    public  sprite emptySprite;
+    public  Sprite emptySprite;
 
     // ITEM SLOT //
     [SerializeField]

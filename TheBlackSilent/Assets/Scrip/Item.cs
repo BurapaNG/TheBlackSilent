@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
 
 
 
-    private InventoryManager inventoryManager;
+    private InventoryManeger inventoryManager;
 
     // Start is called before the first frame update
     void Start()
