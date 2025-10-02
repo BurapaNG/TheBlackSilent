@@ -11,29 +11,22 @@ public class Item : MonoBehaviour
     [SerializeField]
     private Sprite sprite;
 
-    [TextArea]
-    [SerializeField]
-    private string itemDescription;
-
-
-
-    private InventoryManeger inventoryManager;
+    private InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
-    {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManeger>();
-    }
+    
+        {
+            inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
-            if (leftOverItems == 0)
-                Destroy(gameObject);
-            else
-                quantity = leftOverItems;
+            inventoryManager.AddItem(itemName, quantity, sprite);
+            Destroy(gameObject);
         }
     }
 }
+

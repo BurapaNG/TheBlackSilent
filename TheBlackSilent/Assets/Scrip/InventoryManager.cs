@@ -1,12 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
-    private bool menuActived;
-    public ItemSlot[] itemSlots;
+    private bool menuActivated;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called before the first frame update
     void Start()
     {
 
@@ -15,35 +16,23 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory") && menuActivated)
         {
-            ToggleInventory();
+            Time.timeScale = 1;
+            InventoryMenu.SetActive(false);
+            menuActivated = false;
+        }
+
+        else if (Input.GetButtonDown("Inventory") && !menuActivated)
+        {
+            Time.timeScale = 0;
+            InventoryMenu.SetActive(true);
+            menuActivated = true;
         }
     }
 
-
-    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription) // Additem //
+    public void AddItem(string itemName, int quantity, Sprite itemSprite)
     {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            if (!itemSlots[i].isFull == false && itemSlots[i].name == name || itemSlots[i].quantity == 0)
-            {
-                int leftOverItems = itemSlots[i].AddItem(itemName, quantity, itemSprite, itemDescription);
-                if (leftOverItems > 0)
-                    leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription);
-                return leftOverItems;
-            }
-        }
-        return quantity;
-    }
-    
-
-    public void DeselectAllSlots()
-    {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            itemSlot[i].selectedShader.SetActive(false);
-            itemSlot[i].thisItemSelected = false;
-        }
+        Debug.Log("itemName = " + itemName + "quantity = " + quantity + "itemSprite = " + itemSprite);
     }
 }
