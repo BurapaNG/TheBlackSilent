@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InventoryManeger : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
     private bool menuActived;
@@ -22,7 +22,7 @@ public class InventoryManeger : MonoBehaviour
     }
 
 
-    public void AddItem(string itemName, int quantity, sprite itemSprite, string itemDescription) // Additem //
+    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription) // Additem //
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
