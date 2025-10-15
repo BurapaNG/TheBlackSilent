@@ -5,6 +5,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour 
 {
+
     private Vector3 positionBeforeHiding;
     private Transform currentHidePoint = null;
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Dictionary<SpriteRenderer, int> originalSortingOrders;
     private bool canHide = false;
     private bool hiding = false;
+    public Animator animator;
 
     private void Awake()
     {
@@ -55,6 +57,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
+
+        animator.SetFloat("Speed", Mathf.Abs (horizontalInput));
+
         if (canHide && Input.GetKeyDown(KeyCode.F))
         {
             hiding = !hiding;

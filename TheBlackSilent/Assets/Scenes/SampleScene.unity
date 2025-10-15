@@ -3116,9 +3116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634102f8e6c7daf4a87bdbe9f1f8bd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  walkSpeed: 3
   runSpeed: 10
   hidePromptUI: {fileID: 1997127526}
+  animator: {fileID: 1127563661}
 --- !u!61 &1127563665
 BoxCollider2D:
   m_ObjectHideFlags: 0
