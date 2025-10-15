@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -11,10 +11,14 @@ public class PlayerController : MonoBehaviour
 
     private bool isRunning = false;
 
+
+
+
     [SerializeField] private float walkSpeed = 5f;  
     [SerializeField] private float runSpeed = 10f;
     
     [SerializeField] private GameObject hidePromptUI;
+    [SerializeField] private GameObject exitHidePromptUI;
     private Rigidbody2D body;
     private SpriteRenderer rend;
     private SpriteRenderer[] allBodyRenderers;
@@ -38,6 +42,10 @@ public class PlayerController : MonoBehaviour
         if (hidePromptUI != null)
         {
             hidePromptUI.SetActive(false);
+        }
+        if (exitHidePromptUI != null)
+        {
+            exitHidePromptUI.SetActive(false);
         }
     }
     private void SetAllSortingOrder(int offset)
@@ -67,6 +75,9 @@ public class PlayerController : MonoBehaviour
         if (canHide && Input.GetKeyDown(KeyCode.F))
         {
             hiding = !hiding;
+
+            animator.SetBool("IsHiding", hiding);
+
             if (hiding)
             {
                 SetAllSortingOrder(-100);
@@ -83,6 +94,7 @@ public class PlayerController : MonoBehaviour
                
 
                 if (hidePromptUI != null) hidePromptUI.SetActive(false);
+                if (exitHidePromptUI != null) exitHidePromptUI.SetActive(true);
             }
 
 
@@ -99,6 +111,7 @@ public class PlayerController : MonoBehaviour
                 
 
                 if (hidePromptUI != null) hidePromptUI.SetActive(true);
+                if (exitHidePromptUI != null) exitHidePromptUI.SetActive(false);
 
             }
         }
@@ -176,8 +189,9 @@ public class PlayerController : MonoBehaviour
             ClearHidePoint();
             canHide = false;
             if (hidePromptUI != null) hidePromptUI.SetActive(false);
-            
-                if (hiding)
+            if (exitHidePromptUI != null) exitHidePromptUI.SetActive(false);
+
+            if (hiding)
                 {
                     hiding = false;
 
