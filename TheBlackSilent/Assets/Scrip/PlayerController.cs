@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 positionBeforeHiding;
     private Transform currentHidePoint = null;
 
+    private bool isRunning = false;
+
     [SerializeField] private float walkSpeed = 5f;  
     [SerializeField] private float runSpeed = 10f;
     
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
 
         animator.SetFloat("Speed", Mathf.Abs (horizontalInput));
+
+        animator.SetBool("IsRunning", isRunning);
 
         if (canHide && Input.GetKeyDown(KeyCode.F))
         {
@@ -117,9 +121,12 @@ public class PlayerController : MonoBehaviour
         {
 
             float currentSpeed = walkSpeed;
+            isRunning = false;
+
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
                 currentSpeed = runSpeed;
+                isRunning = true;
             }
 
 
@@ -129,6 +136,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             body.velocity = Vector2.zero;
+            isRunning = false;
+            animator.SetBool("IsRunning", isRunning);
         }
     }
     private void FlipSprite(float horizontalInput)
