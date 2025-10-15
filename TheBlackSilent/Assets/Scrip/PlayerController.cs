@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     private Vector3 positionBeforeHiding;
     private Transform currentHidePoint = null;
-    [SerializeField] private float speed;
+
+    [SerializeField] private float walkSpeed = 5f;  
+    [SerializeField] private float runSpeed = 10f;
+    
     [SerializeField] private GameObject hidePromptUI;
     private Rigidbody2D body;
     private SpriteRenderer rend;
@@ -107,7 +110,15 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         if (!hiding)
         {
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
+            float currentSpeed = walkSpeed;
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                currentSpeed = runSpeed;
+            }
+
+
+            body.velocity = new Vector2(horizontalInput * currentSpeed, body.velocity.y);
             FlipSprite(horizontalInput);
         }
         else
