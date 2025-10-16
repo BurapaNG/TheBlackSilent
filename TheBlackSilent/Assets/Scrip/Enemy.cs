@@ -1,57 +1,53 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("References")]
-    public Transform player;
-    public LayerMask obstacleMask;
-    private EnemyAttack attackScript; // <- ลิงก์ไปหา EnemyAttack.cs
+    public Transform player; // พูดถึงตัวของ player
+    public float speed = 3f; // ความเร็ว
+    public float stopDistance = 1f; // ระยะในการหยุด
+    public bool flipSpirit = true; // การหันหน้าตาม player
+    public LayerMask obstacleMask; // กำหนด Layer ของสิ่งกีดขวาง
 
-    [Header("Movement Settings")]
-    public float speed = 3f;
-    public float stopDistance = 1.2f; // ระยะเริ่มโจมตี
-    public bool flipSprite = true;
-
-    private Rigidbody2D rb;
     private bool isAttacking = false;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        attackScript = GetComponent<EnemyAttack>(); // เชื่อมสคริปต์โจมตีเข้ามา
-    }
 
     void Update()
     {
         if (player == null) return;
 
+        // ตรวจจับสิ่งกีดขวางระหว่าง Enemy กับ Player
         Vector2 directionToPlayer = player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
-
-        // ตรวจสิ่งกีดขวาง
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer.normalized, distanceToPlayer, obstacleMask);
         bool hasObstacle = hit.collider != null;
 
-        // ถ้าไม่มีสิ่งกีดขวาง และยังอยู่ไกล → เดินเข้าหา
-        if (distanceToPlayer > stopDistance && !hasObstacle)
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        if (distance > stopDistance && !hasObstacle)
         {
             isAttacking = false;
-            Vector2 direction = directionToPlayer.normalized;
-            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+            Vector2 direction = (player.position - transform.position).normalized;
+            transform.position += (Vector3)direction * speed * Time.deltaTime;
         }
-        else if (!hasObstacle && !isAttacking)
+        else if (!hasObstacle)
         {
-            // เข้าโหมดโจมตี
-            isAttacking = true;
-            attackScript.StartAttack(); // ← เรียกฟังก์ชันจาก EnemyAttack.cs
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                Attack();
+            }
         }
+        // ถ้ามีสิ่งกีดขวาง ศัตรูจะไม่เดินและไม่โจมตี
 
-        // หันหน้าตาม player
-        if (flipSprite)
+        if (flipSpirit)
         {
             Vector3 scale = transform.localScale;
             scale.x = player.position.x < transform.position.x ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+    }
+
+    void Attack()
+    {
+        Debug.Log("Enemy attacks");
     }
 }

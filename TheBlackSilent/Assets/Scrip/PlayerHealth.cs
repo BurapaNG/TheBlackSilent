@@ -24,7 +24,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("💀 Player Dead!");
-        // TODO: ใส่ระบบ Game Over / รีเซ็ตฉากได้ที่นี่
+        Debug.Log(" Player Dead!");
     }
 }
