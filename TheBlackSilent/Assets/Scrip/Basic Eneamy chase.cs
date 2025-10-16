@@ -3,9 +3,11 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     public Transform player;      // Reference to the player
-    public float speed = 3f;      // How fast the enemy moves
+    public float walkSpeed = 1f;      // How fast the enemy moves
+    public float runSpeed = 3f;
     public float chaseRange = 10f; // Distance before chasing
     public float stopDistance = 1.5f; // Minimum distance from player
+    public Animator animator;
 
     private void Update()
     {
@@ -20,7 +22,7 @@ public class EnemyChase : MonoBehaviour
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 player.position,
-                speed * Time.deltaTime
+                walkSpeed * Time.deltaTime
             );
         }
     }
