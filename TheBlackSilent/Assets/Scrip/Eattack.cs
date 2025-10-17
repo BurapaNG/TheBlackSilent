@@ -18,7 +18,7 @@ public class Eattack : MonoBehaviour
         if (playerObj != null)
             player = playerObj.transform;
 
-        animator = GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -30,7 +30,9 @@ public class Eattack : MonoBehaviour
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
 
-        if (player != null && Vector3.Distance(transform.position, player.position) <= attackRange)
+        Enemy enemy = this.GetComponent<Enemy>();
+
+        if (enemy.isAttacking == true && Vector3.Distance(transform.position, player.position) <= attackRange)
         {
             // เล่นแอนิเมชันโจมตี
             if (animator != null)

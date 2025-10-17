@@ -1,4 +1,4 @@
-﻿    using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,11 +8,19 @@ public class Enemy : MonoBehaviour
     public bool flipSpirit = true; // การหันหน้าตาม player
     public LayerMask obstacleMask; // กำหนด Layer ของสิ่งกีดขวาง
 
-    private bool isAttacking = false;
+    public bool isAttacking = false;
+    private bool playerVisible = true; // ถ้า false จะไม่ตาม/โจมตี player
 
     void Update()
     {
         if (player == null) return;
+
+        // ถ้า player ถูกตั้งเป็นมองไม่เห็น ศัตรูจะไม่ทำอะไร
+        if (!playerVisible)
+        {
+            isAttacking = false;
+            return;
+        }
 
         // ตรวจจับสิ่งกีดขวางระหว่าง Enemy กับ Player
         Vector2 directionToPlayer = player.position - transform.position;
@@ -49,5 +57,15 @@ public class Enemy : MonoBehaviour
     void Attack()
     {
         Debug.Log("Enemy attacks");
+    }
+
+    // API เพื่อบอกให้ศัตรูรู้ว่าเห็น player หรือไม่
+    public void SetPlayerVisible(bool visible)
+    {
+        playerVisible = visible;
+        if (!playerVisible)
+        {
+            isAttacking = false;
+        }
     }
 }

@@ -20,10 +20,10 @@ public class HideInCabinet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController playerController = other.GetComponent<PlayerController>();
-            if (playerController != null)
+            PlayerHide playerHide = other.GetComponent<PlayerHide>();
+            if (playerHide != null)
             {
-                playerController.SetHidePoint(hidePoint);
+                playerHide.SetHidePoint(hidePoint);
             }
         }
     }
@@ -31,10 +31,10 @@ public class HideInCabinet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController playerController = other.GetComponent<PlayerController>();
-            if (playerController != null)
+            PlayerHide playerHide = other.GetComponent<PlayerHide>();
+            if (playerHide != null)
             {
-                playerController.ClearHidePoint();
+                playerHide.ClearHidePoint();
             }
         }
     }   
