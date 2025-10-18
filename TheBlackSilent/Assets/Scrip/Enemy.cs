@@ -10,6 +10,14 @@ public class Enemy : MonoBehaviour
 
     public bool isAttacking = false;
     private bool playerVisible = true; // ถ้า false จะไม่ตาม/โจมตี player
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+            Debug.LogError(" Missing Rigidbody 2D on Enemy");
+    }
 
     void Update()
     {
@@ -19,6 +27,18 @@ public class Enemy : MonoBehaviour
         if (!playerVisible)
         {
             isAttacking = false;
+
+            Collider2D enemyColliders = GetComponent<Collider2D>();
+            if (enemyColliders != null)
+            {
+                enemyColliders.enabled = false;
+
+                // ศัตรูเดินผ่านไปแบบไม่สนใจตัวของผู้เล่น
+                Vector2 moveDir = transform.localScale.x > 0 ? Vector2.right  : Vector2.left;
+                rb.MovePosition(rb.position + moveDir * speed * 0.5f * Time.fixedDeltaTime);
+
+                Debug.Log("Enemy Can't see player. Walking past...");
+            }
             return;
         }
 
