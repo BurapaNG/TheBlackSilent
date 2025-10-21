@@ -36,6 +36,11 @@ public class PlayerHealth : PlayerController
             
             animator.SetBool("IsDead", true);
         }
+        PlayerController controller = GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
         enabled = false;
     }
 }
