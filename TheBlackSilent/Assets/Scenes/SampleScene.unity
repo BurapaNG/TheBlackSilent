@@ -1252,7 +1252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &386532083
 Transform:
   m_ObjectHideFlags: 0
@@ -12474,9 +12474,6 @@ PrefabInstance:
       addedObject: {fileID: 1693513822}
     - targetCorrespondingSourceObject: {fileID: 5490535332421823569, guid: dcbc96ade8c722648b35954b0fa4013f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1693513825}
-    - targetCorrespondingSourceObject: {fileID: 5490535332421823569, guid: dcbc96ade8c722648b35954b0fa4013f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1693513821}
     - targetCorrespondingSourceObject: {fileID: 5490535332421823569, guid: dcbc96ade8c722648b35954b0fa4013f, type: 3}
       insertIndex: -1
@@ -12960,6 +12957,7 @@ MonoBehaviour:
   damage: 20
   attackCooldown: 2
   attackRange: 1.5
+  animator: {fileID: 1693513820}
 --- !u!114 &1693513822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12973,30 +12971,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   player: {fileID: 1127563657}
-  speed: 3
+  walkSpeed: 1
+  runSpeed: 8
   stopDistance: 1
   flipSpirit: 1
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
   isAttacking: 0
---- !u!114 &1693513825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693513814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8bfa4fadd090f74e84de244ef9a4acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  player: {fileID: 1127563657}
-  walkSpeed: 1
-  runSpeed: 3
-  chaseRange: 10
-  stopDistance: 1.5
   animator: {fileID: 1693513820}
 --- !u!4 &1693513827 stripped
 Transform:
@@ -14622,7 +14604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300999806274280217, guid: 6017a3c97059be9429be63844062b27d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -127.968
+      value: -4.081
       objectReference: {fileID: 0}
     - target: {fileID: 4398009794558756806, guid: 6017a3c97059be9429be63844062b27d, type: 3}
       propertyPath: m_Layer

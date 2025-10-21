@@ -6,10 +6,11 @@ public class Eattack : MonoBehaviour
     public int damage = 20;
     public float attackCooldown = 2f;
     public float attackRange = 1.5f;
+    
 
     private float lastAttackTime = 0f;
     private Transform player;
-    private Animator animator;
+    public Animator animator;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Eattack : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
         StartAttack();
     }
 
@@ -37,8 +39,9 @@ public class Eattack : MonoBehaviour
             // เล่นแอนิเมชันโจมตี
             if (animator != null)
             {
-                animator.SetTrigger("Attack");
+                animator.SetTrigger("isAttacking 0"); 
             }
+            
 
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)

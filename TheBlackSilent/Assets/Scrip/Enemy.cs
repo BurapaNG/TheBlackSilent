@@ -3,18 +3,22 @@
 public class Enemy : MonoBehaviour
 {
     public Transform player; // พูดถึงตัวของ player
-    public float speed = 3f; // ความเร็ว
+    public float walkSpeed = 1.5f; // <--- ความเร็วในการเดิน (ตอนไม่เห็น/เดินผ่าน)
+    public float runSpeed = 5f; // <--- ความเร็วในการวิ่ง (ตอนตามผู้เล่น)
     public float stopDistance = 1f; // ระยะในการหยุด
     public bool flipSpirit = true; // การหันหน้าตาม player
     public LayerMask obstacleMask; // กำหนด Layer ของสิ่งกีดขวาง
 
+
     public bool isAttacking = false;
     private bool playerVisible = true; // ถ้า false จะไม่ตาม/โจมตี player
     private Rigidbody2D rb;
+    public Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         if (rb == null)
             Debug.LogError(" Missing Rigidbody 2D on Enemy");
     }
@@ -35,7 +39,13 @@ public class Enemy : MonoBehaviour
 
                 // ศัตรูเดินผ่านไปแบบไม่สนใจตัวของผู้เล่น
                 Vector2 moveDir = transform.localScale.x > 0 ? Vector2.right  : Vector2.left;
-                rb.MovePosition(rb.position + moveDir * speed * 0.5f * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + moveDir * walkSpeed * 0.5f * Time.fixedDeltaTime);
+
+                if (animator != null)
+                {
+                    animator.SetBool("isWalking", true);
+                    animator.SetBool("isRunning", false); 
+                }
 
                 Debug.Log("Enemy Can't see player. Walking past...");
             }
@@ -53,15 +63,40 @@ public class Enemy : MonoBehaviour
         if (distance > stopDistance && !hasObstacle)
         {
             isAttacking = false;
+            //ส่วนควบคุมแอนิเมชันการเดิน/วิ่ง
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", false); // <--- ปิดเดิน
+                animator.SetBool("isRunning", true); // <--- เปิดวิ่ง
+            }
+
             Vector2 direction = (player.position - transform.position).normalized;
-            transform.position += (Vector3)direction * speed * Time.deltaTime;
+            transform.position += (Vector3)direction * runSpeed * Time.deltaTime;
         }
         else if (!hasObstacle)
         {
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false); 
+            }
+
             if (!isAttacking)
             {
                 isAttacking = true;
                 Attack();
+            }
+            else // hasObstacle เป็นจริง หรือ playerVisible เป็นเท็จ
+            {
+                
+                // ********** ส่วนควบคุมแอนิเมชัน Idle **********
+                if (animator != null)
+                {
+                    animator.SetBool("isWalking", false);
+                   
+
+                }
+                // ****************************************************
             }
         }
         // ถ้ามีสิ่งกีดขวาง ศัตรูจะไม่เดินและไม่โจมตี
