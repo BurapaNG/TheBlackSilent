@@ -11015,6 +11015,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a65ac28744a3b49859f70f0b2d638f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  walkSpeed: 5
+  runSpeed: 10
+  hidePromptUI: {fileID: 0}
+  exitHidePromptUI: {fileID: 0}
+  animator: {fileID: 1127563661}
   maxHealth: 100
 --- !u!114 &1127563671
 MonoBehaviour:
@@ -12954,6 +12959,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c957cedb4fdfd764cb3ab4349da6804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Eattack
+  player: {fileID: 0}
+  walkSpeed: 1.5
+  runSpeed: 5
+  stopDistance: 1
+  flipSpirit: 1
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isAttacking: 0
+  animator: {fileID: 1693513820}
   damage: 20
   attackCooldown: 2
   attackRange: 1.5
@@ -12972,7 +12987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   player: {fileID: 1127563657}
   walkSpeed: 1
-  runSpeed: 8
+  runSpeed: 6
   stopDistance: 1
   flipSpirit: 1
   obstacleMask:

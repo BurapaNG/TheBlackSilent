@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Eattack : MonoBehaviour
+public class Eattack : Enemy
 {
     [Header("Attack Settings")]
     public int damage = 20;
