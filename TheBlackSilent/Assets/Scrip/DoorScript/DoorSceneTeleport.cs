@@ -8,7 +8,7 @@ public class DoorSceneTeleport : MonoBehaviour
     public string destinationDoorName; // The name of the door to spawn at in next scene
 
     [Header("Interaction Settings")]
-    public KeyCode interactKey = KeyCode.E;
+    public KeyCode interactKey = KeyCode.F;
 
     private bool playerIsOverlapping;
 
