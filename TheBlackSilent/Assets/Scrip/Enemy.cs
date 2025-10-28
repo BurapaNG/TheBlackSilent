@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
             Collider2D enemyColliders = GetComponent<Collider2D>();
             if (enemyColliders != null)
             {
-                enemyColliders.enabled = false;
+                
 
                 // ศัตรูเดินผ่านไปแบบไม่สนใจตัวของผู้เล่น
                 Vector2 moveDir = transform.localScale.x > 0 ? Vector2.right  : Vector2.left;
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
                 if (animator != null)
                 {
                     animator.SetBool("isWalking", false);
-                   
+                    animator.SetBool("isRunning", false);
 
                 }
                 // ****************************************************

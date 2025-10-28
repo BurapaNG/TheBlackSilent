@@ -844,7 +844,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3474365260886147945, guid: e02d186c46b64fc468259595fd2bdd6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.13
+      value: 4.55
       objectReference: {fileID: 0}
     - target: {fileID: 3474365260886147945, guid: e02d186c46b64fc468259595fd2bdd6c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13118,7 +13118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c957cedb4fdfd764cb3ab4349da6804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Eattack
-  player: {fileID: 0}
+  player: {fileID: 1127563657}
   walkSpeed: 1.5
   runSpeed: 5
   stopDistance: 1
@@ -15213,7 +15213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1557653378293159215, guid: 6e57b913582caa84e97108f4c65b6846, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.1
+      value: -23.72
       objectReference: {fileID: 0}
     - target: {fileID: 1557653378293159215, guid: 6e57b913582caa84e97108f4c65b6846, type: 3}
       propertyPath: m_LocalPosition.y
