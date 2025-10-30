@@ -12835,8 +12835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a27a177c24bc74bbc0f557ca0c3e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTeleport
-  sceneToLoad: SecondScene
-  destinationDoorName: Door_Room2
+  sceneToLoad: ThirdScene
+  destinationDoorName: Door_Room1 Hallway
   interactKey: 102
 --- !u!61 &699309435
 BoxCollider2D:
@@ -16815,7 +16815,7 @@ Transform:
   m_GameObject: {fileID: 1730104604}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5350723, y: -10.7, z: 0}
+  m_LocalPosition: {x: 8.13, y: -10.7, z: 0}
   m_LocalScale: {x: 0.23131533, y: 7.6183114, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
