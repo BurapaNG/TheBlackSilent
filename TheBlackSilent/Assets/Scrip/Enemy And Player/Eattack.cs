@@ -4,11 +4,11 @@ public class Eattack : Enemy
 {
     [Header("Attack Settings")]
     public int damage = 20;
-    public float attackCooldown = 2f;
+    public float attackCooldown = 5f;
     public float attackRange = 1.5f;
     
 
-    private float lastAttackTime = 0f;
+    private float lastAttackTime = 1f;
     private Transform player;
     public Animator animator;
 

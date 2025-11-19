@@ -8,10 +8,14 @@ public class Enemy : MonoBehaviour
     public float stopDistance = 1f; // ระยะในการหยุด
     public bool flipSpirit = true; // การหันหน้าตาม player
     public LayerMask obstacleMask; // กำหนด Layer ของสิ่งกีดขวาง
+    public float visionRange = 10f; // ระยะการมองเห็น
+    public float despawnTime = 5f; // เวลาในการหายตัวหลังจากไม่เห็น player
 
 
     public bool isAttacking = false;
+    public float currentDespawnTime;
     private bool playerVisible = true; // ถ้า false จะไม่ตาม/โจมตี player
+    private bool despawnTimmerActive;
     private Rigidbody2D rb;
     public Animator animator;
 
@@ -107,6 +111,40 @@ public class Enemy : MonoBehaviour
             scale.x = player.position.x < transform.position.x ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+    }
+
+    void CheckPlayVisible()
+    {
+        Vector2 directionToPlayer = player.position - transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer.normalized, distanceToPlayer, obstacleMask);
+        bool hasObstacle = hit.collider != null;
+        if (distanceToPlayer <= visionRange && !hasObstacle)
+        {
+            SetPlayerVisible(true);
+        }
+        else
+        {
+            SetPlayerVisible(false);
+        }
+    }
+
+    void StartDespawnTimer() 
+    {
+        despawnTimmerActive = true;
+        currentDespawnTime = despawnTime;
+    }
+
+    void ResetDespawnTimer()
+    {
+        despawnTimmerActive = false;
+        currentDespawnTime = despawnTime;
+    }
+
+    void DespawnEnemy()
+    {
+        Debug.Log("Enemy despawned");
+        Destroy(gameObject);
     }
 
     void Attack()

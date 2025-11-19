@@ -14634,7 +14634,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7678127, y: 3.691553}
+  m_Size: {x: 0.8, y: 3.8}
   m_EdgeRadius: 0
 --- !u!50 &1127563666
 Rigidbody2D:
@@ -16445,7 +16445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5490535332421823569, guid: dcbc96ade8c722648b35954b0fa4013f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543537074968619721, guid: dcbc96ade8c722648b35954b0fa4013f, type: 3}
       propertyPath: m_Layer
@@ -17189,11 +17189,14 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  visionRange: 10
+  despawnTime: 5
   isAttacking: 0
+  currentDespawnTime: 0
   animator: {fileID: 1693513820}
   damage: 25
-  attackCooldown: 2
-  attackRange: 1.5
+  attackCooldown: 5
+  attackRange: 1
   animator: {fileID: 1693513820}
 --- !u!114 &1693513822
 MonoBehaviour:
@@ -17215,7 +17218,10 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  visionRange: 10
+  despawnTime: 5
   isAttacking: 0
+  currentDespawnTime: 0
   animator: {fileID: 1693513820}
 --- !u!4 &1693513827 stripped
 Transform:
