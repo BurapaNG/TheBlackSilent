@@ -7,6 +7,9 @@ public class PlayerHide : MonoBehaviour
     private Transform hideSpot;
     private SpriteRenderer spriteRenderer;
 
+    // ตัวแปรสำหรับ AudioSource ที่รับมาจากตู้
+    private AudioSource currentCabinetAudioSource;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -21,9 +24,7 @@ public class PlayerHide : MonoBehaviour
             {
                 Debug.Log("Hiding");
                 Hide();
-            }
-
-            else
+            } else
                 Unhide();
         }
     }
@@ -31,6 +32,13 @@ public class PlayerHide : MonoBehaviour
     void Hide()
     {
         if (isHidden) return;
+
+        // 📢 1. เล่นเสียงเปิดตู้
+        if (currentCabinetAudioSource != null)
+        {
+            // สั่งเล่นเสียงที่ถูกกำหนดไว้ใน AudioSource Component ของตู้
+            currentCabinetAudioSource.Play();
+        }
 
         isHidden = true;
         spriteRenderer.enabled = false; // ซ่อน sprite
@@ -49,6 +57,14 @@ public class PlayerHide : MonoBehaviour
     {
         if (!isHidden) return;
 
+        // 📢 2. เล่นเสียงปิดตู้/ออกจากตู้
+        if (currentCabinetAudioSource != null)
+        {
+            // ใช้เสียงเดิมก็ได้ หรือถ้าต้องการเสียงปิดตู้ต่างหาก
+            // สามารถเปลี่ยน clip ก่อนเรียก Play() ได้ (แต่ต้องมี clip แยกในตู้)
+            currentCabinetAudioSource.Play();
+        }
+
         isHidden = false;
         spriteRenderer.enabled = true; // แสดง sprite อีกครั้ง
 
@@ -60,38 +76,32 @@ public class PlayerHide : MonoBehaviour
         Debug.Log("Player left the hiding spot!");
     }
 
-    // Methods เพื่อให้สอดคล้องกับ HideInCabinet (SetHidePoint / ClearHidePoint)
-    public void SetHidePoint(Transform point)
+    // ... ส่วนที่เหลือของโค้ด (SetHidePoint, ClearHidePoint, OnTrigger...)
+
+    // Methods เพื่อให้สอดคล้องกับ HideInCabinet
+    // หมายเหตุ: เนื่องจากสคริปต์ HideInCabinet เดิมเรียก SetHidePoint 
+    // และคุณได้เพิ่ม SetCabinetInteraction เข้ามา
+    // คุณอาจต้องรวม logic ให้ SetHidePoint เรียก SetCabinetInteraction ด้วย 
+    // หรือให้ HideInCabinet เรียก SetCabinetInteraction อย่างเดียว (ตามที่ผมแนะนำก่อนหน้านี้)
+
+    // ... 
+
+    // ฟังก์ชันใหม่ที่ใช้รับค่า AudioSource
+    public void SetCabinetInteraction(Transform hidePoint, AudioSource cabinetAudioSource)
     {
-        hideSpot = point;
+        hideSpot = hidePoint; // ใช้ hideSpot เดิม
         canHide = true;
+        currentCabinetAudioSource = cabinetAudioSource; // <--- เก็บค่า AudioSource
         Debug.Log("Press F to hide");
+
+        // ถ้าคุณมีการใช้ SetHidePoint() จากที่อื่น คุณอาจจะต้องการให้โค้ดส่วนนี้มาแทนที่
+        // SetHidePoint() เดิม
     }
 
-    public void ClearHidePoint()
+    public void ClearCabinetInteraction()
     {
         canHide = false;
         if (isHidden) Unhide(); // ออกจากที่ซ่อนอัตโนมัติเมื่อเดินออก
         hideSpot = null;
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // เก็บพฤติกรรมเดิมไว้ (ถ้ามี HideSpot แบบง่าย)
-        if (other.CompareTag("locked"))
-        {
-            canHide = true;
-            hideSpot = other.transform;
-            Debug.Log("Press F to hide");
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("locked"))
-        {
-            canHide = false;
-            if (isHidden) Unhide(); // ออกจากที่ซ่อนอัตโนมัติเมื่อเดินออก
-        }
-    }
-}
+        currentCabinetAudioSource = null; // <--- ล้างค่า AudioSource
+    }}
