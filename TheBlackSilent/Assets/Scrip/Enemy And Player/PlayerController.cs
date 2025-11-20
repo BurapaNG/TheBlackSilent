@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerController : MonoBehaviour 
-{
-
-    private Vector3 positionBeforeHiding;
+public class PlayerController : MonoBehaviour
+{   private Vector3 positionBeforeHiding;
     private Transform currentHidePoint = null;
 
     private bool isRunning = false;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip runSound;
 
-
-
-    [SerializeField] private float walkSpeed = 5f;  
+    // ย้ายตัวแปร speed มาไว้ข้างล่าง Audio Settings เพื่อความเป็นระเบียบ
+    [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 10f;
-    
+
     [SerializeField] private GameObject hidePromptUI;
     [SerializeField] private GameObject exitHidePromptUI;
     private Rigidbody2D body;
@@ -26,6 +27,39 @@ public class PlayerController : MonoBehaviour
     private bool canHide = false;
     private bool hiding = false;
     public Animator animator;
+
+    // ฟังก์ชันนี้ถูกเรียกโดย Animation Event
+    public void PlayFootstepSound()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        // 📢 1. ตรวจสอบว่ากำลังซ่อนตัว หรือผู้เล่นหยุดกดปุ่มแล้วหรือไม่
+        // ถ้าหยุดกดปุ่มหรือกำลังซ่อนตัว ให้หยุดเสียงทันทีและออกจากฟังก์ชัน
+        if (hiding || Mathf.Abs(horizontalInput) < 0.01f)
+        {
+            if (footstepAudioSource != null && footstepAudioSource.isPlaying)
+            {
+                footstepAudioSource.Stop();
+            }
+            return;
+        }
+
+        if (footstepAudioSource == null || (walkSound == null && runSound == null))
+        {
+            return;
+        }
+
+        // กำหนด clip ที่จะเล่นตามสถานะ isRunning
+        AudioClip clipToPlay = isRunning ? runSound : walkSound;
+
+        if (clipToPlay != null)
+        {
+            // เปลี่ยน clip ของ AudioSource แล้วเล่น
+            footstepAudioSource.clip = clipToPlay;
+            footstepAudioSource.pitch = Random.Range(0.9f, 1.1f); // เพิ่มความหลากหลายของเสียงเล็กน้อย
+            footstepAudioSource.Play();
+        }
+    }
 
     private void Awake()
     {
@@ -48,14 +82,16 @@ public class PlayerController : MonoBehaviour
             exitHidePromptUI.SetActive(false);
         }
     }
+
     private void SetAllSortingOrder(int offset)
     {
         foreach (SpriteRenderer r in allBodyRenderers)
         {
-           
+
             r.sortingOrder = originalSortingOrders[r] + offset;
         }
     }
+
     private void ResetAllSortingOrder()
     {
         foreach (SpriteRenderer r in allBodyRenderers)
@@ -64,13 +100,20 @@ public class PlayerController : MonoBehaviour
             r.sortingOrder = originalSortingOrders[r];
         }
     }
+
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        animator.SetFloat("Speed", Mathf.Abs (horizontalInput));
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         animator.SetBool("IsRunning", isRunning);
+
+        // 📢 2. การตรวจสอบทันที: ถ้าหยุดเคลื่อนที่ ให้สั่งหยุดเสียงทันที
+        if (Mathf.Abs(horizontalInput) < 0.01f && footstepAudioSource != null && footstepAudioSource.isPlaying)
+        {
+            footstepAudioSource.Stop();
+        }
 
         if (canHide && Input.GetKeyDown(KeyCode.F))
         {
@@ -91,7 +134,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 Physics2D.IgnoreLayerCollision(8, 9, true);
-               
+
 
                 if (hidePromptUI != null) hidePromptUI.SetActive(false);
                 if (exitHidePromptUI != null) exitHidePromptUI.SetActive(true);
@@ -108,7 +151,7 @@ public class PlayerController : MonoBehaviour
                 body.isKinematic = false;
 
                 Physics2D.IgnoreLayerCollision(8, 9, false);
-                
+
 
                 if (hidePromptUI != null) hidePromptUI.SetActive(true);
                 if (exitHidePromptUI != null) exitHidePromptUI.SetActive(false);
@@ -117,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    
+
     public void SetHidePoint(Transform point)
     {
         currentHidePoint = point;
@@ -127,6 +170,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHidePoint = null;
     }
+
     private void FixedUpdate()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -153,18 +197,19 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsRunning", isRunning);
         }
     }
+
     private void FlipSprite(float horizontalInput)
     {
-        
+
         if (horizontalInput > 0.01f)
         {
-            
+
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
-        
+
         else if (horizontalInput < -0.01f)
         {
-           
+
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
@@ -181,6 +226,7 @@ public class PlayerController : MonoBehaviour
             if (hidePromptUI != null) hidePromptUI.SetActive(true);
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("locked"))
@@ -192,16 +238,15 @@ public class PlayerController : MonoBehaviour
             if (exitHidePromptUI != null) exitHidePromptUI.SetActive(false);
 
             if (hiding)
-                {
-                    hiding = false;
+            {
+                hiding = false;
 
 
-                    transform.position = positionBeforeHiding;
-                    body.isKinematic = false;
-                    Physics2D.IgnoreLayerCollision(8, 9, false);
-                    rend.sortingOrder = 2;
-                }
-            
+                transform.position = positionBeforeHiding;
+                body.isKinematic = false;
+                Physics2D.IgnoreLayerCollision(8, 9, false);
+                rend.sortingOrder = 2;
+            }
+
         }
-    }
-}
+    }}
