@@ -16,4 +16,9 @@ public class AudioScrips : MonoBehaviour
         musicSource.clip = backGround;
         musicSource.Play();
     }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.PlayOneShot(clip);
+    }
 }
