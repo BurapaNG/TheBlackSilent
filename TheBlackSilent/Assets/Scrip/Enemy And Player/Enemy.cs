@@ -9,16 +9,32 @@ public class Enemy : MonoBehaviour
     public bool flipSpirit = true; // การหันหน้าตาม player
     public LayerMask obstacleMask; // กำหนด Layer ของสิ่งกีดขวาง
 
+    [Header("Movement Sound Settings")]
+    // ลากไฟล์เสียงก้าวเดิน/วิ่ง มาใส่ใน Inspector
+    public AudioClip walkSound;
+    public AudioClip runSound;
+    
 
     public bool isAttacking = false;
     private bool playerVisible = true; // ถ้า false จะไม่ตาม/โจมตี player
     private Rigidbody2D rb;
     public Animator animator;
+    private AudioSource audioSource; // **เพิ่ม AudioSource**
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        // **รับหรือเพิ่ม AudioSource**
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // stepTimer = timeBetweenSteps; // ไม่ใช้แล้วในวิธีนี้
+
         if (rb == null)
             Debug.LogError(" Missing Rigidbody 2D on Enemy");
     }
@@ -33,18 +49,15 @@ public class Enemy : MonoBehaviour
             isAttacking = false;
 
             Collider2D enemyColliders = GetComponent<Collider2D>();
-            if (enemyColliders != null)
-            {
-                
-
+            if (enemyColliders != null){
                 // ศัตรูเดินผ่านไปแบบไม่สนใจตัวของผู้เล่น
-                Vector2 moveDir = transform.localScale.x > 0 ? Vector2.right  : Vector2.left;
+                Vector2 moveDir = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
                 rb.MovePosition(rb.position + moveDir * walkSpeed * 0.5f * Time.fixedDeltaTime);
 
                 if (animator != null)
                 {
                     animator.SetBool("isWalking", true);
-                    animator.SetBool("isRunning", false); 
+                    animator.SetBool("isRunning", false);
                 }
 
                 Debug.Log("Enemy Can't see player. Walking past...");
@@ -52,7 +65,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // ตรวจจับสิ่งกีดขวางระหว่าง Enemy กับ Player
+        // ... (ส่วนการตามหา/โจมตี) ...
         Vector2 directionToPlayer = player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer.normalized, distanceToPlayer, obstacleMask);
@@ -61,13 +74,11 @@ public class Enemy : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (distance > stopDistance && !hasObstacle)
-        {
-            isAttacking = false;
-            //ส่วนควบคุมแอนิเมชันการเดิน/วิ่ง
+        {isAttacking = false;
             if (animator != null)
             {
-                animator.SetBool("isWalking", false); // <--- ปิดเดิน
-                animator.SetBool("isRunning", true); // <--- เปิดวิ่ง
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", true);
             }
 
             Vector2 direction = (player.position - transform.position).normalized;
@@ -78,7 +89,7 @@ public class Enemy : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("isWalking", false);
-                animator.SetBool("isRunning", false); 
+                animator.SetBool("isRunning", false);
             }
 
             if (!isAttacking)
@@ -86,20 +97,14 @@ public class Enemy : MonoBehaviour
                 isAttacking = true;
                 Attack();
             }
-            else // hasObstacle เป็นจริง หรือ playerVisible เป็นเท็จ
-            {
-                
-                // ********** ส่วนควบคุมแอนิเมชัน Idle **********
-                if (animator != null)
-                {
-                    animator.SetBool("isWalking", false);
-                    animator.SetBool("isRunning", false);
-
-                }
-                // ****************************************************
-            }
+            // ...
         }
-        // ถ้ามีสิ่งกีดขวาง ศัตรูจะไม่เดินและไม่โจมตี
+        else // ถ้ามีสิ่งกีดขวางหรือเงื่อนไขอื่น ๆ ที่ทำให้หยุดนิ่ง
+        { if (animator != null){
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
+            }}
+        // ... (ส่วนการกลับทิศทาง) ...
 
         if (flipSpirit)
         {
@@ -108,6 +113,31 @@ public class Enemy : MonoBehaviour
             transform.localScale = scale;
         }
     }
+
+    // ฟังก์ชันช่วยสำหรับเล่นเสียงก้าวเท้า
+    // สามารถวางไว้ตรงไหนก็ได้ในคลาส แต่ตามธรรมเนียมมักจะวางไว้ท้ายสุดก่อน Attack()
+    private void PlayFootstep(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            // ใช้ PlayOneShot เพื่อให้เสียงไม่ถูกหยุดโดยเสียงร้องหรือเสียงอื่น ๆ
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    // ฟังก์ชันสาธารณะที่จะถูกเรียกจาก Animation Event ของแอนิเมชันเดิน
+    public void PlayFootstepSound_Walk()
+    {
+        PlayFootstep(walkSound);
+    }
+
+    // ฟังก์ชันสาธารณะที่จะถูกเรียกจาก Animation Event ของแอนิเมชันวิ่ง
+    public void PlayFootstepSound_Run()
+    {
+        PlayFootstep(runSound);
+    }
+
 
     void Attack()
     {
@@ -122,5 +152,4 @@ public class Enemy : MonoBehaviour
         {
             isAttacking = false;
         }
-    }
-}
+    }}
