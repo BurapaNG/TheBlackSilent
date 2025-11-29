@@ -1420,6 +1420,9 @@ PrefabInstance:
       addedObject: {fileID: 1208642409}
     - targetCorrespondingSourceObject: {fileID: 8579607872988978823, guid: 6017a3c97059be9429be63844062b27d, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1208642410}
+    - targetCorrespondingSourceObject: {fileID: 8579607872988978823, guid: 6017a3c97059be9429be63844062b27d, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1208642408}
     - targetCorrespondingSourceObject: {fileID: 8579607872988978823, guid: 6017a3c97059be9429be63844062b27d, type: 3}
       insertIndex: -1
@@ -1754,6 +1757,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1208642410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208642400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258ed6e0b7bab534cb575416bd4b122b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
 --- !u!1 &1253830490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,6 +2820,7 @@ MonoBehaviour:
   interactKey: 102
   doorAudioSource: {fileID: 2105457434}
   audioDuration: 0.5
+  requiredKeyName: 
 --- !u!61 &2105457438
 BoxCollider2D:
   m_ObjectHideFlags: 0

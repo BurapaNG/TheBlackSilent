@@ -15,18 +15,38 @@ public class DoorSceneTeleport : MonoBehaviour
     public AudioSource doorAudioSource;
     public float audioDuration = 0.5f;
 
-    private bool playerIsOverlapping;
+    [Header("Key Requirement")]
+    public string requiredKeyName; // ใส่ชื่อไอเทมกุญแจที่ต้องใช้เปิด เช่น "Key_Red"
+
+    // เปลี่ยนจาก bool เป็น Collider2D เพื่อเก็บ reference ของผู้เล่น
+    private Collider2D playerCollider = null;
 
     void Update()
     {
-        if (playerIsOverlapping && Input.GetKeyDown(interactKey))
+        // ตรวจสอบว่าผู้เล่นอยู่ข้างในและกดปุ่ม
+        if (playerCollider != null && Input.GetKeyDown(interactKey))
         {
-            // แทนที่จะเปลี่ยนฉากทันที เราจะเรียก Coroutine เพื่อเล่นเสียงก่อน
+            // 1. ดึง InventoryManager จาก Collider ของผู้เล่น
+            InventoryManager inventory = playerCollider.GetComponent<InventoryManager>();
+
+            // 2. ตรวจสอบเงื่อนไขกุญแจ
+            // ถ้ามีการกำหนด requiredKeyName และผู้เล่นไม่มีกุญแจ
+            if (!string.IsNullOrEmpty(requiredKeyName))
+            {
+                if (inventory == null || !inventory.HasItem(requiredKeyName))
+                {
+                    Debug.Log("Door is locked! Required Key: " + requiredKeyName);
+                    // (สามารถเพิ่ม UI Feedback ตรงนี้เพื่อบอกผู้เล่นว่าประตูถูกล็อค)
+                    return; // หยุดการทำงานถ้าไม่มีกุญแจ
+                }
+            }
+
+            // ถ้าผ่านเงื่อนไข (มีกุญแจ หรือไม่ต้องใช้กุญแจ)
             StartCoroutine(LoadSceneAfterAudio());
         }
     }
 
-    // Coroutine ที่ใช้ในการหน่วงเวลา
+    // Coroutine ที่ใช้ในการหน่วงเวลา (ไม่มีการเปลี่ยนแปลง)
     IEnumerator LoadSceneAfterAudio()
     {
         // 1. เล่นเสียง
@@ -36,21 +56,28 @@ public class DoorSceneTeleport : MonoBehaviour
         }
 
         // 2. รอตามระยะเวลาของเสียงที่กำหนด
-        // ใช้เวลาหน่วงเพื่อให้เสียงเปิดประตูเล่นได้ยินก่อนเปลี่ยนฉาก
         yield return new WaitForSeconds(audioDuration);
 
         // 3. บันทึกข้อมูลและเปลี่ยนฉาก
         PlayerPrefs.SetString("SpawnDoor", destinationDoorName);
         SceneManager.LoadScene(sceneToLoad);
-    }void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            playerIsOverlapping = true;
     }
 
+    // ใช้ OnTriggerEnter2D เพื่อเก็บ Collider Reference
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerCollider = other;
+        }
+    }
+
+    // ใช้ OnTriggerExit2D เพื่อล้าง Collider Reference
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-            playerIsOverlapping = false;
+        {
+            playerCollider = null;
+        }
     }
 }
