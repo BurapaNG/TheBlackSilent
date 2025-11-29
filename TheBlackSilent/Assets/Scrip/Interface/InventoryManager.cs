@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // ต้องเพิ่มเข้ามาสำหรับจัดการ Scene Event
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
     // ตัวแปรสำหรับ Singleton Pattern (เพื่อควบคุมให้มีแค่ตัวเดียว)
     public static InventoryManager Instance;
 
-    // รายการของไอเทมที่ผู้เล่นเก็บได้ (เก็บ ItemPickup component ไว้)
+    // รายการของไอเทมที่ผู้เล่นเก็บได้ (คงอยู่ข้ามฉาก)
     private List<ItemPickup> collectedItems = new List<ItemPickup>();
 
-    // รายการของ Image Component ที่ถูกค้นหาแบบ Dynamic
+    // รายการของ Image Component ที่ถูกค้นหาแบบ Dynamic (ถูกเติมใหม่ทุกฉาก)
     private List<Image> uiItemSlots = new List<Image>();
 
     void Awake()
@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            // ทำให้ Player GameObject (ที่มีสคริปต์นี้) คงอยู่ข้ามฉาก
             DontDestroyOnLoad(gameObject);
 
             // 2. ลงทะเบียน Event เมื่อโหลดฉากใหม่เสร็จสมบูรณ์
@@ -27,25 +28,28 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            // ทำลายตัวซ้ำซ้อนทิ้ง
+            // ทำลาย Player ตัวใหม่ที่ถูกสร้างในฉากทิ้ง
             Destroy(gameObject);
         }
     }
 
-    // ฟังก์ชันที่ถูกเรียกเมื่อ GameObject นี้ถูกทำลาย (เพื่อยกเลิกการลงทะเบียน Event)
     void OnDestroy()
     {
+        // ยกเลิกการลงทะเบียน Event เมื่อ GameObject นี้ถูกทำลาย
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // ฟังก์ชัน Event ที่ถูกเรียกเมื่อโหลดฉากเสร็จ
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 1. ค้นหา UI Slot ใหม่ในฉากปัจจุบัน
+        // A. ค้นหา UI Slot ใหม่ในฉากปัจจุบัน
         FindAndSetupUI();
 
-        // 2. อัปเดต UI ด้วยไอเทมที่เก็บไว้แล้ว (ใช้สำหรับแสดงไอคอนทันทีหลังเปลี่ยนฉาก)
+        // B. อัปเดต UI ด้วยไอเทมที่เก็บไว้แล้ว
         UpdateInventoryUI();
+
+        // C. จัดการตำแหน่งเกิดของผู้เล่นให้ตรงกับ Spawn Point
+        HandlePlayerSpawn();
     }
 
     /// <summary>
@@ -53,12 +57,9 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     private void FindAndSetupUI()
     {
-        uiItemSlots.Clear(); // ล้าง List เก่าออกก่อน
+        uiItemSlots.Clear();
 
-        // **ค้นหา Image Component ที่มีชื่อตามรูปแบบ Slot (ต้องตรงกับชื่อใน Hierarchy)**
-        // ตัวอย่างเช่น: Slot1, Slot2, Slot3, ...
-
-        // เราจะค้นหา Slot ทั้งหมด 6 ช่อง ตามที่คุณได้สร้างไว้ในรูป
+        // ค้นหา Slot ทั้งหมด (Slot1 ถึง Slot6) - ต้องแน่ใจว่าชื่อตรงกันทุกฉาก
         for (int i = 1; i <= 6; i++)
         {
             GameObject slotObject = GameObject.Find("Slot" + i);
@@ -69,14 +70,37 @@ public class InventoryManager : MonoBehaviour
                 {
                     uiItemSlots.Add(slotImage);
                 }
-                else
-                {
-                    Debug.LogWarning("Slot" + i + " found but no Image component attached.");
-                }
             }
         }
 
         Debug.Log("Inventory UI Slots set up. Total found: " + uiItemSlots.Count);
+    }
+
+    /// <summary>
+    /// ย้ายผู้เล่นไปยังจุดเกิดที่กำหนดโดย DoorSceneTeleport.cs
+    /// </summary>
+    private void HandlePlayerSpawn()
+    {
+        string spawnPointName = PlayerPrefs.GetString("SpawnDoor", "");
+
+        if (!string.IsNullOrEmpty(spawnPointName))
+        {
+            // หา Spawn Point ในฉากปัจจุบัน
+            GameObject spawnPoint = GameObject.Find(spawnPointName);
+
+            if (spawnPoint != null)
+            {
+                // ย้ายผู้เล่นไปที่ตำแหน่ง Spawn Point
+                transform.position = spawnPoint.transform.position;
+                Debug.Log("Player moved to spawn point: " + spawnPointName);
+
+                // (ทางเลือก: ล้างค่า PlayerPrefs.DeleteKey("SpawnDoor");)
+            }
+            else
+            {
+                Debug.LogWarning("Spawn point \"" + spawnPointName + "\" not found in the current scene. Player will remain at the default location.");
+            }
+        }
     }
 
     // ฟังก์ชัน AddItem (เหมือนเดิม)

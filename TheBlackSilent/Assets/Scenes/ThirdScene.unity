@@ -3471,13 +3471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ed6e0b7bab534cb575416bd4b122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  uiItemSlots:
-  - {fileID: 1426693566}
-  - {fileID: 1067253672}
-  - {fileID: 1358593170}
-  - {fileID: 1328602366}
-  - {fileID: 719852261}
-  - {fileID: 768100395}
 --- !u!1 &960846353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3551,7 +3544,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.05
-  m_PointLightOuterRadius: 23.15
+  m_PointLightOuterRadius: 4.5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -4660,7 +4653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yOffset: 2.7
-  player: {fileID: 893784048}
 --- !u!114 &1550738679
 MonoBehaviour:
   m_ObjectHideFlags: 0
