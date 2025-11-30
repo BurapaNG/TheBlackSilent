@@ -1,0 +1,494 @@
+fileFormatVersion: 2
+guid: 79e305282f0057640b9e23d20d9ad145
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2993752417075501065
+    second: The_Black_Silent_0
+  - first:
+      213: -7758688749148313800
+    second: The_Black_Silent_1
+  - first:
+      213: 3896866086771948819
+    second: The_Black_Silent_2
+  - first:
+      213: 1791448330535073360
+    second: The_Black_Silent_3
+  - first:
+      213: -6731822373608540228
+    second: The_Black_Silent_4
+  - first:
+      213: -8107201177892710273
+    second: The_Black_Silent_5
+  - first:
+      213: 6883795560636967369
+    second: The_Black_Silent_6
+  - first:
+      213: -825486838263289369
+    second: The_Black_Silent_7
+  - first:
+      213: 3386528382004372393
+    second: The_Black_Silent_8
+  - first:
+      213: 2178045901742803418
+    second: The_Black_Silent_9
+  - first:
+      213: 3692398509969956870
+    second: The_Black_Silent_10
+  - first:
+      213: 1400725066612113390
+    second: The_Black_Silent_11
+  - first:
+      213: -4456345557207245256
+    second: The_Black_Silent_12
+  - first:
+      213: 31766402783061481
+    second: The_Black_Silent_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: The_Black_Silent_0
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 540
+        width: 31
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 908904536f1fb8920800000000000000
+      internalID: 2993752417075501065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 540
+        width: 29
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837e130a0b9935490800000000000000
+      internalID: -7758688749148313800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_2
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 540
+        width: 24
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31dfe473f03741630800000000000000
+      internalID: 3896866086771948819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_3
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 486
+        width: 34
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056720fd3c08cd810800000000000000
+      internalID: 1791448330535073360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 486
+        width: 31
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7390ac733c392a0800000000000000
+      internalID: -6731822373608540228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_5
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 486
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7893158b7f6d7f80800000000000000
+      internalID: -8107201177892710273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_6
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 485
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c96d2a2797288f50800000000000000
+      internalID: 6883795560636967369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_7
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 486
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e96e8e18184b84f0800000000000000
+      internalID: -825486838263289369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_8
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 485
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a3262fee9d5ffe20800000000000000
+      internalID: 3386528382004372393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_9
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 486
+        width: 15
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad900e53539f93e10800000000000000
+      internalID: 2178045901742803418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_10
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 486
+        width: 31
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 600e0f3b1e80e3330800000000000000
+      internalID: 3692398509969956870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_11
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 486
+        width: 29
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef7667d600607310800000000000000
+      internalID: 1400725066612113390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_12
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 486
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e95429351e722c0800000000000000
+      internalID: -4456345557207245256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Black_Silent_13
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 486
+        width: 35
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e52da1006bd07000800000000000000
+      internalID: 31766402783061481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      The_Black_Silent_0: 2993752417075501065
+      The_Black_Silent_1: -7758688749148313800
+      The_Black_Silent_10: 3692398509969956870
+      The_Black_Silent_11: 1400725066612113390
+      The_Black_Silent_12: -4456345557207245256
+      The_Black_Silent_13: 31766402783061481
+      The_Black_Silent_2: 3896866086771948819
+      The_Black_Silent_3: 1791448330535073360
+      The_Black_Silent_4: -6731822373608540228
+      The_Black_Silent_5: -8107201177892710273
+      The_Black_Silent_6: 6883795560636967369
+      The_Black_Silent_7: -825486838263289369
+      The_Black_Silent_8: 3386528382004372393
+      The_Black_Silent_9: 2178045901742803418
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
