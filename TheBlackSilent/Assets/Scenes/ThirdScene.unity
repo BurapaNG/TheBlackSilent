@@ -1087,7 +1087,7 @@ MonoBehaviour:
   interactKey: 102
   doorAudioSource: {fileID: 432201201}
   audioDuration: 0.5
-  requiredKeyName: 
+  requiredKeyName: key_object3
 --- !u!61 &432201204
 BoxCollider2D:
   m_ObjectHideFlags: 0

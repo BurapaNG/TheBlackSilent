@@ -404,6 +404,7 @@ MonoBehaviour:
   interactKey: 102
   doorAudioSource: {fileID: 186131612}
   audioDuration: 0.5
+  requiredKeyName: 
 --- !u!61 &186131615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2727,7 +2728,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yOffset: 2.7
-  player: {fileID: 1714612568}
 --- !u!114 &1474914185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4101,6 +4101,7 @@ MonoBehaviour:
   interactKey: 102
   doorAudioSource: {fileID: 1847174906}
   audioDuration: 0.5
+  requiredKeyName: key_object (1)
 --- !u!61 &1847174909
 BoxCollider2D:
   m_ObjectHideFlags: 0
