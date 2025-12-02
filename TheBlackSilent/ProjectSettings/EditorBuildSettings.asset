@@ -9,28 +9,25 @@ EditorBuildSettings:
     path: Assets/Scenes/Start_game.unity
     guid: 57d237789a36fb14294bdd50984e157b
   - enabled: 1
-    path: Assets/Scenes/MainScenes/MainMenu.unity
-    guid: e30d6929a956f6f479db295ae651cd92
-  - enabled: 1
-    path: Assets/Scenes/MainScenes/OutScene.unity
+    path: Assets/Scenes/OutScene.unity
     guid: 9b07a4cfb2b1de54c971b366255f1f36
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/House.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/MainScenes/SecondScene.unity
+    path: Assets/Scenes/SecondScene.unity
     guid: 5cda430126f0ee549bd29092a9817baa
   - enabled: 1
-    path: Assets/Scenes/MainScenes/ThirdScene.unity
+    path: Assets/Scenes/ThirdScene.unity
     guid: 4d068d8a3dd34a44393eaf2d6d5d2ced
   - enabled: 1
-    path: Assets/Scenes/MainScenes/fourScene.unity
+    path: Assets/Scenes/fourScene.unity
     guid: 6f2c55b11d5e56c4992bf38ed7840f4c
   - enabled: 1
-    path: Assets/Scenes/MainScenes/fiveScene.unity
+    path: Assets/Scenes/fiveScene.unity
     guid: 1c2182d1530aed7498835a828258a607
   - enabled: 1
-    path: Assets/Scenes/MainScenes/SixScene.unity
+    path: Assets/Scenes/SixScene.unity
     guid: 25c1eb24e898983458c93c0fe75027e5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
