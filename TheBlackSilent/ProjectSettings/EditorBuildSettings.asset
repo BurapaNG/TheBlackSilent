@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/OutScene.unity
     guid: 9b07a4cfb2b1de54c971b366255f1f36
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/FirstScene.unity
     guid: d52227afd8a589046ba78dbd24ea0a59
   - enabled: 0
+=======
+>>>>>>> parent of 952fa7f (Merge branch 'main' of https://github.com/BurapaNG/TheBlackSilent)
     path: Assets/Scenes/House.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
