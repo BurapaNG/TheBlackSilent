@@ -187,12 +187,12 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            body.velocity = new Vector2(horizontalInput * currentSpeed, body.velocity.y);
+            body.linearVelocity = new Vector2(horizontalInput * currentSpeed, body.linearVelocity.y);
             FlipSprite(horizontalInput);
         }
         else
         {
-            body.velocity = Vector2.zero;
+            body.linearVelocity = Vector2.zero;
             isRunning = false;
             animator.SetBool("IsRunning", isRunning);
         }

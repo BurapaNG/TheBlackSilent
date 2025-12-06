@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     private List<ItemPickup> collectedItems = new List<ItemPickup>();
 
     // รายการของ Image Component ที่ถูกค้นหาแบบ Dynamic (ถูกเติมใหม่ทุกฉาก)
-    private List<Image> uiItemSlots = new List<Image>();
+    public List<Image> uiItemSlots = new List<Image>();
 
     void Awake()
     {
@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         uiItemSlots.Clear();
 
         // ค้นหา Slot ทั้งหมด (Slot1 ถึง Slot6) - ต้องแน่ใจว่าชื่อตรงกันทุกฉาก
-        for (int i = 1; i <= 6; i++)
+        for (int i = 1; i <= 8; i++)
         {
             GameObject slotObject = GameObject.Find("Slot" + i);
             if (slotObject != null)
